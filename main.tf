@@ -24,7 +24,7 @@ resource "google_compute_instance" "master" {
   }
 
   metadata = {
-    ssh-keys = "${var.username}:${file("${var.path}/auth_id")}"
+    ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
     }
 }
 
@@ -66,7 +66,7 @@ resource "google_compute_instance" "infra" {
   }
 
   metadata = {
-    ssh-keys = "${var.username}:${file("${var.path}/auth_id")}"
+    ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
 }
 
@@ -108,7 +108,7 @@ resource "google_compute_instance" "worker" {
   }
 
   metadata = {
-    ssh-keys = "${var.username}:${file("${var.path}/auth_id")}"
+    ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
 }
 
