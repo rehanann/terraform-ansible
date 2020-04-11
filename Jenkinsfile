@@ -10,8 +10,8 @@ pipeline {
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
                     sh 'echo $provides | base64 -d > provides.tf'
                     sh 'echo $variables | base64 -d > variables.tf'
-                    sh 'cat first_test/provides.tf'
-                    sh 'cat first_test/variables.tf'
+                    sh 'cat provides.tf'
+                    sh 'cat variables.tf'
                     }
              }
             stage('TF Plan') {
