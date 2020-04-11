@@ -8,12 +8,12 @@ pipeline {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    sh 'cat /var/lib/jenkins/mytest-secrets/providers.tf > providers.tf'
-                    sh 'cat /var/lib/jenkins/mytest-secrets/variables.tf > variables.tf'
+                    sh 'cat /var/lib/jenkins/mytest-secrets/provider.tf > provider.tf'
+                    sh 'cat /var/lib/jenkins/mytest-secrets/variable.tf > variable.tf'
                     // sh '/root/secrets/providers.tf .'
                     // sh '/root/secrets/variables.tf .'
-                    sh 'cat variables.tf'
-                    sh 'cat providers.tf'
+                    sh 'cat variable.tf'
+                    sh 'cat provider.tf'
                     }
              }
             stage('TF Plan') {
