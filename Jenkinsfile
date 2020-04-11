@@ -34,5 +34,15 @@ pipeline {
                     sh 'terraform apply myplan'
             }
         }
+        stage('OPENSHIFT Installation') {
+                steps {
+                    sh 'git clone -b release-3.11 --single-branch https://github.com/openshift/openshift-ansible.git'
+                    sh 'cp /var/lib/jenkins/mytest-secrets/inventory.ini inventory.ini'
+                    sh 'ansible-playbook -i inventory.ini nodes ansible-pb/config.yml'
+                    sh 'ansible-playbook -i inventory.ini nodes ansible-pb/docker-storage-setup-ofs.yml'
+                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
+                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
+                }
+        }
     }
 }

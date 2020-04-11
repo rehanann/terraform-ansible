@@ -59,7 +59,7 @@
     - block:
         - name: create the docker-storage-setup overlayfs config file
           template:
-            src: "/root/terraform-ansible/ansible-pb/docker-storage-setup-dm"
+            src: "/var/lib/jenkins/mytest-secrets/docker-storage-setup-dm"
             dest: /etc/sysconfig/docker-storage-setup
             owner: root
             group: root
