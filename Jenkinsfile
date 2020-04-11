@@ -7,7 +7,7 @@ pipeline {
             stage('Checkout') {
                 steps {
                     checkout scm
-                    sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./creds/serviceaccount.json'
+                    sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
                     sh 'echo $provides | base64 -d > first_test/provides.tf'
                     sh 'echo $variables | base64 -d > first_test/variables.tf'
                     sh 'cat first_test/provides.tf'
