@@ -8,10 +8,10 @@ pipeline {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    // sh 'echo $provides | base64 -d > provides.tf'
-                    // sh 'echo $variables | base64 -d > variables.tf'
-                    sh '/root/secrets/providers.tf .'
-                    sh '/root/secrets/variables.tf .'
+                    sh 'cat /var/lib/jenkins/mytest-secrets/providers.tf > provides.tf'
+                    sh 'cat /var/lib/jenkins/mytest-secrets/variables.tf > variables.tf'
+                    // sh '/root/secrets/providers.tf .'
+                    // sh '/root/secrets/variables.tf .'
                     sh 'cat variables.tf'
                     sh 'cat providers.tf'
                     }
