@@ -16,11 +16,9 @@ pipeline {
              }
             stage('TF Plan') {
                 steps {
-                container('terraform') {
                 sh 'cd first_test'
                 sh 'terraform init'
                 sh 'terraform plan -out myplan'
-                }
             }
         }
         // stage('Approval') {
@@ -32,10 +30,7 @@ pipeline {
         // }
         stage('TF Apply') {
                 steps {
-                    container('terraform') {
                     sh 'terraform apply myplan -auto-approve'
-                
-                }
             }
         }
     }
