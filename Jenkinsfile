@@ -36,7 +36,7 @@ pipeline {
         }
         stage('OPENSHIFT Installation') {
                 steps {
-                    sh 'cp -R /var/lib/jenkins/mytest-secrets/openshift-ansible openshift-ansible'
+                    // sh 'cp -R /var/lib/jenkins/mytest-secrets/openshift-ansible openshift-ansible'
                     sh 'cp /var/lib/jenkins/mytest-secrets/inventory.ini inventory.ini'
                     sh 'sudo ansible-playbook -i inventory.ini ansible-pb/config.yml'
                     sh 'sudo ansible-playbook -i inventory.ini ansible-pb/docker-storage-setup-ofs.yml'
