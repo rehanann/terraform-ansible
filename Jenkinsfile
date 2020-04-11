@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  environment {
-    SVC_ACCOUNT_KEY = credentials('provides.tf')
+//   environment {
+//     SVC_ACCOUNT_KEY = credentials('provides.tf')
   }
   stages {
             stage('Checkout') {
