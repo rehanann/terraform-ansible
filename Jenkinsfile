@@ -1,13 +1,20 @@
 pipeline {
   agent any
+  stages {
+      stage('authentiction') {
+          steps {
+              SVC_ACCOUNT_KEY = credentials('provides')
+          }
+      }
+  }
   environment {
-    'echo $provides | base64 -d > first_test/provides.tf'
-    SVC_ACCOUNT_KEY = credentials('first_test/provides.tf')
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+  }
   }
   stages {
             stage('Checkout') {
                 steps {
-                    checkout scm
+                    // checkout scm
                     sh 'echo $provides | base64 -d > first_test/provides.tf'
                     sh 'echo $variables | base64 -d > first_test/variables.tf'
                     sh 'cat first_test/provides.tf'
