@@ -8,10 +8,12 @@ pipeline {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    sh 'echo $provides | base64 -d > provides.tf'
-                    sh 'echo $variables | base64 -d > variables.tf'
-                    sh 'cat provides.tf'
+                    // sh 'echo $provides | base64 -d > provides.tf'
+                    // sh 'echo $variables | base64 -d > variables.tf'
+                    sh '/root/secrets/providers.tf .'
+                    sh '/root/secrets/variables.tf .'
                     sh 'cat variables.tf'
+                    sh 'cat providers.tf'
                     }
              }
             stage('TF Plan') {
