@@ -3,7 +3,6 @@ pipeline {
   environment {
     SVC_ACCOUNT_KEY = credentials('provides')
   }
-  }
   stages {
             stage('Checkout') {
                 steps {
