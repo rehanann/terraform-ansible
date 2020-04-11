@@ -8,8 +8,8 @@ pipeline {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    sh 'echo $provides | base64 -d > first_test/provides.tf'
-                    sh 'echo $variables | base64 -d > first_test/variables.tf'
+                    sh 'echo $provides | base64 -d > provides.tf'
+                    sh 'echo $variables | base64 -d > variables.tf'
                     sh 'cat first_test/provides.tf'
                     sh 'cat first_test/variables.tf'
                     }
@@ -18,7 +18,7 @@ pipeline {
                 steps {
                 sh 'ls -l'
                 sh 'pwd'
-                sh 'cd first_test'
+                // sh 'cd first_test'
                 sh 'terraform init'
                 sh 'terraform plan -out myplan'
             }
