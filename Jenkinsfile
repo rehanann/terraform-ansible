@@ -1,22 +1,23 @@
 pipeline {
   agent any
   environment {
-    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+    SVC_ACCOUNT_KEY = credentials('provides.tf')
   }
   stages {
             stage('Checkout') {
                 steps {
                     checkout scm
-                    sh 'mkdir -p creds'
-                    sh 'echo $SVC_ACCOUNT_KEY | base64 -D > ./creds/serviceaccount.json'
+                    sh 'echo ${provides.tf} | base64 -d > first_test/provides.tf'
+                    sh 'echo ${variables.tf} | base64 -d > first_test/variables.tf'
                     }
              }
             stage('TF Plan') {
                 steps {
                 container('terraform') {
+                sh 'cd first_test'
                 sh 'terraform init'
                 sh 'terraform plan -out myplan'
-                 }
+                }
             }
         }
         stage('Approval') {
