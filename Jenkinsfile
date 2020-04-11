@@ -10,8 +10,6 @@ pipeline {
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
                     sh 'cat /var/lib/jenkins/mytest-secrets/provider.tf > provider.tf'
                     sh 'cat /var/lib/jenkins/mytest-secrets/variable.tf > variable.tf'
-                    // sh '/root/secrets/providers.tf .'
-                    // sh '/root/secrets/variables.tf .'
                     sh 'cat variable.tf'
                     sh 'cat provider.tf'
                     }
@@ -20,7 +18,6 @@ pipeline {
                 steps {
                 sh 'ls -l'
                 sh 'pwd'
-                // sh 'cd first_test'
                 sh 'terraform init'
                 sh 'terraform plan -out myplan'
             }
