@@ -7,8 +7,8 @@ pipeline {
             stage('Checkout') {
                 steps {
                     checkout scm
-                    sh 'echo ${provides.tf} | base64 -d > first_test/provides.tf'
-                    sh 'echo ${variables.tf} | base64 -d > first_test/variables.tf'
+                    sh 'echo $provides.tf | base64 -d > first_test/provides.tf'
+                    sh 'echo $variables.tf | base64 -d > first_test/variables.tf'
                     }
              }
             stage('TF Plan') {
@@ -20,17 +20,17 @@ pipeline {
                 }
             }
         }
-        stage('Approval') {
-                steps {
-                    script {
-                     def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
-                }
-            }
-        }
+        // stage('Approval') {
+        //         steps {
+        //             script {
+        //              def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+        //         }
+        //     }
+        // }
         stage('TF Apply') {
                 steps {
                     container('terraform') {
-                    sh 'terraform apply myplan'
+                    sh 'terraform apply myplan -auto-approve'
                 
                 }
             }
