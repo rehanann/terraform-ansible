@@ -9,6 +9,8 @@ pipeline {
                     checkout scm
                     sh 'echo $provides.tf | base64 -d > first_test/provides.tf'
                     sh 'echo $variables.tf | base64 -d > first_test/variables.tf'
+                    sh 'cat first_test/provides.tf'
+                    sh 'cat first_test/variables.tf'
                     }
              }
             stage('TF Plan') {
