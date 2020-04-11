@@ -2,8 +2,6 @@
 - hosts: nodes
   become: yes
   become_user: jenkins
-  vars:
-    ansible_ssh_common_args='-o StrictHostKeyChecking=no'
   tasks:
     - name: install yum utils
       yum:
