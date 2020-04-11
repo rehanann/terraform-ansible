@@ -1,8 +1,9 @@
 pipeline {
   agent any
-//   environment {
-//     SVC_ACCOUNT_KEY = credentials('provides.tf')
-//   }
+  environment {
+    'echo $provides | base64 -d > first_test/provides.tf'
+    SVC_ACCOUNT_KEY = credentials('first_test/provides.tf')
+  }
   stages {
             stage('Checkout') {
                 steps {
