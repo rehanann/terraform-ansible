@@ -1,0 +1,15 @@
+-
+- hosts: nodes
+  become: yes
+  become_user: root
+  tasks:
+    - name: Install a list of packages
+      yum:
+        name:
+           - docker
+        state: present
+      
+    - name: Make sure a docker is running
+      systemd:
+        state: started
+        name: docker
