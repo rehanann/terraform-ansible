@@ -32,6 +32,7 @@ pipeline {
         stage('TF Apply') {
                 steps {
                     sh 'terraform apply myplan'
+                    sh 'cp myplan ../gcp-destroy/'
             }
         }
         stage('OPENSHIFT Installation') {
