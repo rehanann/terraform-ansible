@@ -1,7 +1,7 @@
 ---
 - hosts: nodes
   become: yes
-  become_user: jenkins
+  become_user: root
   tasks:
     - name: install yum utils
       yum:
