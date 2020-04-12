@@ -34,6 +34,7 @@ pipeline {
                     sh 'terraform apply myplan'
                     sh 'cp myplan ../gcp-destroy/'
                     sh 'cp terraform.tfstate* ../gcp-destroy/'
+                    sh 'sleep 300'
             }
         }
         stage('OPENSHIFT Installation') {
