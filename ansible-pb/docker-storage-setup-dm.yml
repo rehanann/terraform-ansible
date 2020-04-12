@@ -59,7 +59,7 @@
     - block:
         - name: create the docker-storage-setup overlayfs config file
           template:
-            src: "ansible-pb/docker-storage-setup-dm"
+            src: "docker-storage-setup-dm"
             dest: /etc/sysconfig/docker-storage-setup
             owner: root
             group: root
