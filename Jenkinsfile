@@ -42,10 +42,10 @@ pipeline {
                     // sh 'cp -R /var/lib/jenkins/mytest-secrets/openshift-ansible openshift-ansible'
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
                     sh 'cp /var/lib/jenkins/mytest-secrets/inventory.ini inventory.ini'
-                    sh 'sudo ansible-playbook -i inventory.ini ansible-pb/config.yml'
-                    sh 'sudo ansible-playbook -i inventory.ini ansible-pb/docker-storage-setup-ofs.yml'
-                    sh 'sudo ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
-                    sh 'sudo ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
+                    sh 'ansible-playbook -i inventory.ini ansible-pb/config.yml'
+                    sh 'ansible-playbook -i inventory.ini ansible-pb/docker-storage-setup-ofs.yml'
+                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
+                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
                 }
         }
     }
