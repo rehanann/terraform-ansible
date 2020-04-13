@@ -2,16 +2,22 @@ pipeline {
   agent any
   environment {
     SVC_ACCOUNT_KEY = credentials('terraform-auth')
+    INVENTORY = credentials('INVENTORY_INI')
+    VARIABLES = credentials('VARIABLES')
+    PROVIDER = credentials('PROVIDER')
   }
   stages {
             stage('Checkout') {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    sh 'cp /var/lib/jenkins/mytest-secrets/provider.tf  provider.tf'
-                    sh 'cp /var/lib/jenkins/mytest-secrets/variable.tf  variable.tf'
-                    sh 'cat variable.tf'
-                    sh 'cat provider.tf'
+                    // sh 'cp /var/lib/jenkins/mytest-secrets/provider.tf  provider.tf'
+                    // sh 'cp /var/lib/jenkins/mytest-secrets/variable.tf  variable.tf'
+                    // sh 'cat variable.tf'
+                    // sh 'cat provider.tf'
+                    sh 'echo $INVENTORY  | base64 -d > inventory.ini'
+                    sh 'echo $PROVIDER | base64 -d > provider.tf'
+                    sh 'echo $VARIABLES | base64 -d > variable.tf'
                     }
              }
             stage('TF Plan') {
