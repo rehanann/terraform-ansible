@@ -42,7 +42,6 @@ pipeline {
         stage('Pre-req Installation') {
                 steps {
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
-                    sh 'cp /var/lib/jenkins/mytest-secrets/inventory.ini inventory.ini'
                     sh 'ansible-playbook -i inventory.ini ansible-pb/config.yml'
                     sh 'sleep 120'
                 }
