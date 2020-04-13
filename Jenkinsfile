@@ -11,10 +11,6 @@ pipeline {
                 steps {
                     checkout scm
                     sh 'echo $SVC_ACCOUNT_KEY | base64 -d > serviceaccount.json'
-                    // sh 'cp /var/lib/jenkins/mytest-secrets/provider.tf  provider.tf'
-                    // sh 'cp /var/lib/jenkins/mytest-secrets/variable.tf  variable.tf'
-                    // sh 'cat variable.tf'
-                    // sh 'cat provider.tf'
                     sh 'echo $INVENTORY  | base64 -d > inventory.ini'
                     sh 'echo $PROVIDER | base64 -d > provider.tf'
                     sh 'echo $VARIABLES | base64 -d > variable.tf'
@@ -45,7 +41,6 @@ pipeline {
         }
         stage('Pre-req Installation') {
                 steps {
-                    // sh 'cp -R /var/lib/jenkins/mytest-secrets/openshift-ansible openshift-ansible'
                     sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
                     sh 'cp /var/lib/jenkins/mytest-secrets/inventory.ini inventory.ini'
                     sh 'ansible-playbook -i inventory.ini ansible-pb/config.yml'
