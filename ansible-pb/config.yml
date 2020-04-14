@@ -7,7 +7,7 @@
       yum:
         name: yum-utils
         state: latest
-    - name: Install a list of packages
+    - name: Install pre-req
       yum:
         name:
           - wget
@@ -23,12 +23,12 @@
           - bash-completion
           - kexec-tools
         state: present
-    - name: Install a list of packages
+    - name: Update Centos kernel
       yum:
         name: "*"
         state: latest
     
-    - name: Install a list of packages
+    - name: Install Docker
       yum:
         name:
            - docker
