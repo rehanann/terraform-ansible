@@ -51,11 +51,11 @@ pipeline {
                     sh 'ansible-playbook -i inventory.ini ansible-pb/docker-storage-setup-ofs.yml'
             }
         }
-        stage('OpenShift Installation') {
-            steps {
-                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
-                    sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
-            }
-        }
+        // stage('OpenShift Installation') {
+        //     steps {
+        //             sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
+        //             sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
+        //     }
+        // }
     }
 }
