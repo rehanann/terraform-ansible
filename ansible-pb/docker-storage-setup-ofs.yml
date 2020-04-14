@@ -34,13 +34,12 @@
     
     - name: Run Wipefs on /dev/sdb
       command: "wipefs -af /dev/sdb"
-        register: "disks_wiped"
     
     - name: remove any existing docker-storage config file
       file:
         path: /etc/sysconfig/docker-storage
         state: absent
-        
+
     - block:
         - name: create the docker-storage-setup overlayfs config file
           template:
