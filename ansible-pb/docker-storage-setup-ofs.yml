@@ -54,17 +54,6 @@
     - name: Run docker-storage setup on /dev/sdb
       command: "docker-storage-setup"
     
-    # - name: Create a logical volume 
-    #   lvol:
-    #     vg: vg_docker
-    #     lv: lv_docker
-    #     size: 100%FREE
-        
-    # - name: Create a xfs filesystem on /dev/sdb1
-    #   filesystem:
-    #     fstype: xfs
-    #     dev: /dev/mapper/vg_docker-lv_docker
-
     - name: Mount up device by label
       mount:
         path: /var/lib/docker
