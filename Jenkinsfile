@@ -53,7 +53,7 @@ pipeline {
             steps {
                     sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/prerequisites.yml'
                     sh 'ansible-playbook -i inventory.ini openshift-ansible/playbooks/deploy_cluster.yml'
-                    sh 'oc get nodes'
+                    sh '/usr/local/bin/oc get nodes'
             }
         }
     }
