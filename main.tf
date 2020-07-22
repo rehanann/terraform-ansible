@@ -26,6 +26,18 @@ resource "google_compute_instance" "master" {
   metadata = {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
     }
+  
+  provisioner "file" {
+    source = "${file("${var.path}/sshd_config")}"
+    destination = "/etc/ssh/sshd_config"
+  }
+
+  connection {
+    user = "root"
+    type = "ssh"
+    private_key = "${file("${var.path}/rsa_root_key")}"
+  }
+
 }
 
 resource "google_compute_disk" "master" {
@@ -68,6 +80,18 @@ resource "google_compute_instance" "infra" {
   metadata = {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
+
+  provisioner "file" {
+    source = "${file("${var.path}/sshd_config")}"
+    destination = "/etc/ssh/sshd_config"
+  }
+
+  connection {
+    user = "root"
+    type = "ssh"
+    private_key = "${file("${var.path}/rsa_root_key")}"
+  }
+
 }
 
 resource "google_compute_disk" "infra" {
@@ -110,6 +134,18 @@ resource "google_compute_instance" "worker" {
   metadata = {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
+
+  provisioner "file" {
+    source = "${file("${var.path}/sshd_config")}"
+    destination = "/etc/ssh/sshd_config"
+  }
+
+  connection {
+    user = "root"
+    type = "ssh"
+    private_key = "${file("${var.path}/rsa_root_key")}"
+  }
+  
 }
 
 resource "google_compute_disk" "worker" {
