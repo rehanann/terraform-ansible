@@ -22,11 +22,12 @@ resource "google_compute_instance" "master" {
   service_account {
       scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
-
-  metadata = {
-    ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
-    }
   
+  metadata = {
+    ssh-keys = "root:${file("${var.path}/auth_id")}"
+    ssh-keys = "root:${file("${var.path}/auth_id")}"
+    }
+
   provisioner "file" {
     source = "${file("${var.path}/sshd_config")}"
     destination = "/etc/ssh/sshd_config"
@@ -79,6 +80,7 @@ resource "google_compute_instance" "infra" {
 
   metadata = {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
+    ssh-keys = "root:${file("${var.path}/auth_id")}"
   }
 
   provisioner "file" {
@@ -133,6 +135,7 @@ resource "google_compute_instance" "worker" {
 
   metadata = {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
+    ssh-keys = "root:${file("${var.path}/auth_id")}"
   }
 
   provisioner "file" {
