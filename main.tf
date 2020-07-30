@@ -27,16 +27,16 @@ resource "google_compute_instance" "master" {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
 
-  provisioner "file" {
-    source = "${file("${var.path}/sshd_config")}"
-    destination = "/etc/ssh/sshd_config"
-  }
+  # provisioner "file" {
+  #   source = "${file("${var.path}/sshd_config")}"
+  #   destination = "/etc/ssh/sshd_config"
+  # }
 
-  connection {
-    user = "root"
-    type = "ssh"
-    private_key = "${file("${var.path}/rsa_root_key")}"
-  }
+  # connection {
+  #   user = "root"
+  #   type = "ssh"
+  #   private_key = "${file("${var.path}/rsa_root_key")}"
+  # }
 
 }
 
@@ -81,16 +81,16 @@ resource "google_compute_instance" "infra" {
     ssh-keys = "${var.username}:${file("${var.path}/jenkins_key")}"
   }
 
-  provisioner "file" {
-    source = "${file("${var.path}/sshd_config")}"
-    destination = "/etc/ssh/sshd_config"
-  }
+  # provisioner "file" {
+  #   source = "${file("${var.path}/sshd_config")}"
+  #   destination = "/etc/ssh/sshd_config"
+  # }
 
-  connection {
-    user = "root"
-    type = "ssh"
-    private_key = "${file("${var.path}/rsa_root_key")}"
-  }
+  # connection {
+  #   user = "root"
+  #   type = "ssh"
+  #   private_key = "${file("${var.path}/rsa_root_key")}"
+  # }
 
 }
 
@@ -136,16 +136,16 @@ resource "google_compute_instance" "worker" {
     ssh-keys = "root:${file("${var.path}/auth_id")}"
   }
 
-  provisioner "file" {
-    source = "${file("${var.path}/sshd_config")}"
-    destination = "/etc/ssh/sshd_config"
-  }
+  # provisioner "file" {
+  #   source = "${file("${var.path}/sshd_config")}"
+  #   destination = "/etc/ssh/sshd_config"
+  # }
 
-  connection {
-    user = "root"
-    type = "ssh"
-    private_key = "${file("${var.path}/rsa_root_key")}"
-  }
+  # connection {
+  #   user = "root"
+  #   type = "ssh"
+  #   private_key = "${file("${var.path}/rsa_root_key")}"
+  # }
   
 }
 
